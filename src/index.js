@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
+import App from "./components/App";
+import reducers from "./reducers";
+
+import { Provider } from "react-redux"; // component made in react-redux library
+import { createStore } from "redux";
+
+//Add the Provider tag at the top of the component hierarchy and pass a reference of the redux store, where the reducers are stored.
+ReactDOM.render(
+  <Provider store={createStore(reducers)}>
     <App />
-  </React.StrictMode>
+  </Provider>, // The components wrapped in provider tag can now use the Connect tag to communicate with the provider, thus enabling all components to get access to redux store.
+  document.querySelector("#root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
